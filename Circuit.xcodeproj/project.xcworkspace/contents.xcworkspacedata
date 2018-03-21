@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:../../../Development/Orgone/AuditionVersion2/readme.txt">
+   </FileRef>
+   <FileRef
+      location = "self:/Users/harrykosalos/Circuit/Circuit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/AppDelegate.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/AppDelegate.m">
+   </FileRef>
+   <Group
+      location = "group:../Paint1/Assets.xcassets"
+      name = "Assets.xcassets">
+      <Group
+         location = "group:AppIcon.appiconset"
+         name = "AppIcon.appiconset">
+         <FileRef
+            location = "group:Contents.json">
+         </FileRef>
+         <FileRef
+            location = "group:icon128.png">
+         </FileRef>
+         <FileRef
+            location = "group:icon32.png">
+         </FileRef>
+      </Group>
+   </Group>
+   <Group
+      location = "group:../Paint1/Base.lproj"
+      name = "Base.lproj">
+      <FileRef
+         location = "group:Main.storyboard">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:../Paint1/CircuitEntry.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/CircuitEntry.mm">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/Common.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/Common.mm">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/DrawComponents.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/DrawComponents.mm">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/HelpController.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/HelpController.mm">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/Info.plist">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/library.mm">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/main.m">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/Persist.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/Persist.mm">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/QuartzGraphics.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/QuartzGraphics.mm">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/QuartzView.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/QuartzView.mm">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/undo.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/undo.mm">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/ViewController.h">
+   </FileRef>
+   <FileRef
+      location = "group:../Paint1/ViewController.m">
+   </FileRef>
+</Workspace>
