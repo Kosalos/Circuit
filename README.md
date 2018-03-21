@@ -7,6 +7,6 @@ I use Acorn (a Mac 2D drawing program) to grab a screenshot of the small sized P
 
 Press the '?' key to lauch the help dialog to get started.
 
-Step 1: find a schematic you want to build. I attached Acorn and PNG files of two projects I build successfully.
+Step 1: find a schematic you want to build. I attached Acorn and PNG files of two schematics and their companion circuit app files that I built successfully.
 Visit Muffwiggler.com, and search for author Kosalos to find all the projects I posted there. 
 They were all designed with this program.
