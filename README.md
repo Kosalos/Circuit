@@ -9,4 +9,7 @@ Press the '?' key to lauch the help dialog to get started.
 
 Step 1: find a schematic you want to build. I attached Acorn and PNG files of two schematics and their companion circuit app files that I built successfully.
 Visit Muffwiggler.com, and search for author Kosalos to find all the projects I posted there. 
+
+https://www.muffwiggler.com/forum/postlist.php?search_author=kosalos
+
 They were all designed with this program.
