@@ -58,7 +58,7 @@ NSString* htmlString =
                     "<td><FONT COLOR=white>Notes</td>"
                     "</tr>"
                 "<tr>"
-                    "<td><FONT COLOR=green>V</td>  <td><FONT COLOR=lightblue>Toggle View style (Design, Naked, Wires, PCB)</td>"
+                    "<td><FONT COLOR=green>V</td>  <td><FONT COLOR=lightblue>Cycle View style.  'Shift-V' toggles Via display during design view.</td>"
                     "<td><FONT COLOR=yellow>Click on upper left pin of component to select it</td>"
                     "</tr>"
                 "<tr>"

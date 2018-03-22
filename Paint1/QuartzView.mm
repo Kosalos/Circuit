@@ -22,6 +22,7 @@ char recentName[NAME_WIDTH+1];
 bool rotateView = false;
 bool designStyle = false;
 bool semiColonClip = false;
+bool alsoShowVias = false;
 
 NSPoint pnt,basePoint;
 
@@ -386,7 +387,7 @@ void drawConnection(int index)
     
     // via connections
     if(ref.type == CONNECTION_TYPE_VIA) {
-        if(viewStyle == VIEWSTYLE_JUMPER) {
+        if(viewStyle == VIEWSTYLE_JUMPER || alsoShowVias) {
             [[NSColor blackColor] set];
             GLineWidth(isZoom ? CONNECTION_WIDTH_DESIGN*4 : CONNECTION_WIDTH_DESIGN*3);
             GBezierLine(pt1,pt2);
@@ -436,10 +437,10 @@ void drawConnections()
 
     // just Vias
     for(int i=0;i<q.connectionCount;++i) {
-        if(viewStyle == VIEWSTYLE_JUMPER) {
+ //       if(viewStyle == VIEWSTYLE_JUMPER) {
             if(q.connection[i].type == CONNECTION_TYPE_VIA)
                 drawConnection(i);
-        }
+ //       }
     }
 
     GLineWidth(1);
@@ -1673,56 +1674,56 @@ void autoResistorSuffix()
 
 void autoWiring()
 {
-    // delete existing jumpers
-    for(int j=q.connectionCount-1;j>=0;--j) {
-        if(q.connection[j].type == CONNECTION_TYPE_VIA) {
-            deleteConnection(j);
-        }
-    }
-    
-top:
-    for(int i=0;i<q.count;++i) {
-        CircuitEntry &ref = q.circuit[i];
-        if(ref.kind != KIND_NODE) continue;
-        if(ref.name[0] == 0) continue;          // node without a name
-        
-        bool hasWire = false;
-        for(int j=0;j<q.connectionCount;++j) {
-            if(q.connection[j].node1 == i || q.connection[j].node2 == i) {
-                if(q.connection[j].type == CONNECTION_TYPE_VIA) {
-                    hasWire = true;
-                    break;
-                }
-            }
-        }
-        if(hasWire) continue;
-        
-        for(int j=i+1;j<q.count;++j) {
-            CircuitEntry &ref2 = q.circuit[j];
-            if(ref2.kind != KIND_NODE) continue;
-            
-            bool hasWire2 = false;
-            for(int k=0;k<q.connectionCount;++k) {
-                if(q.connection[k].node1 == j || q.connection[k].node2 == j) {
-                    if(q.connection[k].type == CONNECTION_TYPE_VIA) {
-                        hasWire2 = true;
-                        break;
-                    }
-                }
-            }
-            if(hasWire2) continue;
-            
-            if(!strcmp(ref.name,ref2.name)) {
-                globalConnection.node1 = i;
-                globalConnection.pin1 = 0;
-                globalConnection.node2 = j;
-                globalConnection.pin2 = 0;
-                globalConnection.type = CONNECTION_TYPE_VIA;
-                addConnection(globalConnection);
-                goto top;
-            }
-        }
-    }
+//    // delete existing jumpers
+//    for(int j=q.connectionCount-1;j>=0;--j) {
+//        if(q.connection[j].type == CONNECTION_TYPE_VIA) {
+//            deleteConnection(j);
+//        }
+//    }
+//
+//top:
+//    for(int i=0;i<q.count;++i) {
+//        CircuitEntry &ref = q.circuit[i];
+//        if(ref.kind != KIND_NODE) continue;
+//        if(ref.name[0] == 0) continue;          // node without a name
+//
+//        bool hasWire = false;
+//        for(int j=0;j<q.connectionCount;++j) {
+//            if(q.connection[j].node1 == i || q.connection[j].node2 == i) {
+//                if(q.connection[j].type == CONNECTION_TYPE_VIA) {
+//                    hasWire = true;
+//                    break;
+//                }
+//            }
+//        }
+//        if(hasWire) continue;
+//
+//        for(int j=i+1;j<q.count;++j) {
+//            CircuitEntry &ref2 = q.circuit[j];
+//            if(ref2.kind != KIND_NODE) continue;
+//
+//            bool hasWire2 = false;
+//            for(int k=0;k<q.connectionCount;++k) {
+//                if(q.connection[k].node1 == j || q.connection[k].node2 == j) {
+//                    if(q.connection[k].type == CONNECTION_TYPE_VIA) {
+//                        hasWire2 = true;
+//                        break;
+//                    }
+//                }
+//            }
+//            if(hasWire2) continue;
+//
+//            if(!strcmp(ref.name,ref2.name)) {
+//                globalConnection.node1 = i;
+//                globalConnection.pin1 = 0;
+//                globalConnection.node2 = j;
+//                globalConnection.pin2 = 0;
+//                globalConnection.type = CONNECTION_TYPE_VIA;
+//                addConnection(globalConnection);
+//                goto top;
+//            }
+//        }
+//    }
 }
 
 // ----------------------------------------------------------------------------
@@ -2137,7 +2138,11 @@ bool ctrlKeyDown = false;
             popUndo();
             return;
         case 'V' :
-            emailTest();
+			if(shiftKeyDown) {
+				alsoShowVias = !alsoShowVias;
+				break;
+			}
+			
             cycleViewStyle();
             break;
         case 'W' :
