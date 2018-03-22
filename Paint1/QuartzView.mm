@@ -269,18 +269,18 @@ void move(int dx,int dy)
 
 NSColor *highlightColor(bool highlightStatus)
 {
-    if(viewStyle == VIEWSTYLE_JUMPER) return [NSColor grayColor];
+	if(viewStyle == VIEWSTYLE_JUMPER) return  seeThroughGrayColor;  //          [NSColor grayColor];
 
     // there IS a highlighted group. gray = Not part of group
     if(highlightCount)
-        if(!highlightStatus) return [NSColor grayColor];
+        if(!highlightStatus) return seeThroughGrayColor; // [NSColor grayColor];
     
     return [NSColor blackColor];
 }
 
 NSColor *highlightColor(int index)
 {
-    if(viewStyle == VIEWSTYLE_JUMPER) return [NSColor grayColor];
+    if(viewStyle == VIEWSTYLE_JUMPER) return seeThroughGrayColor;//[NSColor grayColor];
 
     if(state == STATE_CHECK && componentData[index].selected) {
         GLineWidth(3);
@@ -289,7 +289,7 @@ NSColor *highlightColor(int index)
     
     // there IS a highlighted group. gray = Not part of group
     if(highlightCount)
-        if(!isHighlighted(index)) return [NSColor grayColor];
+        if(!isHighlighted(index)) return seeThroughGrayColor;//[NSColor grayColor];
     
     if(index == q.index) { // single selected component has highlighted drawing
         GLineWidth(3);
@@ -310,7 +310,7 @@ void setHighlightStrokeColor(int index)
     GLineWidth(1);
     GStrokeColor(highlightColor(index));
     
-    if(viewStyle == VIEWSTYLE_JUMPER)  [[NSColor lightGrayColor] set];
+    if(viewStyle == VIEWSTYLE_JUMPER)  [seeThroughGrayColor set];
 }
 
 void setHighlightFillColor(NSColor *color,bool highlightStatus)
@@ -378,7 +378,7 @@ void drawConnection(int index)
             if(highlightCount) {
                 if(!isHighlightedConnectionPoint(q.connection[index].node1) ||
                    !isHighlightedConnectionPoint(q.connection[index].node2))
-                    [[NSColor lightGrayColor] set];
+                    [seeThroughGrayColor set];
             }
         }
     }
@@ -398,7 +398,7 @@ void drawConnection(int index)
         return;
     }
     
-    if(viewStyle == VIEWSTYLE_JUMPER)  [[NSColor lightGrayColor] set];
+    if(viewStyle == VIEWSTYLE_JUMPER)  [seeThroughGrayColor set];
  
     GLine(pt1,pt2);
 }
@@ -540,9 +540,8 @@ void drawGrid()
         tranColor2= [NSColor colorWithRed:0.8   green:0.8   blue:0.6 alpha:0.3];
         ecapColor = [NSColor colorWithRed:1     green:0     blue:0   alpha:0.3];
         diodeColor= [NSColor colorWithRed:1     green:1     blue:0   alpha:0.5];
-        
-        seeThroughGrayColor = [NSColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.3];
-        
+		seeThroughGrayColor = [NSColor colorWithRed:0 green:0 blue:0 alpha:0.1];
+
         [self reset];
         q.openDocument();
     }
@@ -678,7 +677,7 @@ void PartSummaryRowData::displayFragment(NSColor *color)
     
     GStrokeColor([NSColor clearColor]);
     GFillColor(color);
-    GFilledRectangle(xp-2,yc-2,sz.width+4,sz.height+4);
+    GFilledRectangle(xp-2,yc,sz.width+4,sz.height);
     GStrokeColor([NSColor blackColor]);
     
     GTextL(xp,yc,summary.UTF8String);
@@ -883,7 +882,7 @@ void BomData::displayEntry(int index)
     
     GStrokeColor([NSColor clearColor]);
     GFillColor(summaryColor[entry[index].kind]);
-    GFilledRectangle(xp-2,yc-2,sz.width+4,sz.height+4);
+	GFilledRectangle(xp-2,yc,sz.width+4,sz.height);
     GStrokeColor([NSColor blackColor]);
     
     GTextL(xp,yc,str);
@@ -2089,7 +2088,10 @@ bool ctrlKeyDown = false;
         case 'K' :
             break;
         case 'L' :
-            newState(STATE_LOOK);
+			resetSelectedItemsList();
+			newState(state == STATE_LOOK ? STATE_MOVE : STATE_LOOK);
+			if(state == STATE_LOOK && q.index != NONE)
+				searchSelected();
             break;
         case 'M' :
             q.index = NONE;

@@ -55,9 +55,11 @@ void drawLabel(int x,int y,const char *strParent,bool highlight,int px = UNUSED,
         GFilledRectangle(x-xMargin/2,y-yMargin,sz.width+xMargin,sz.height+yMargin);
     }
     else { // not part of highlighted group. draw in gray tones
-        GStrokeColor([NSColor grayColor]);
+		GStrokeColor(seeThroughGrayColor); //    [NSColor grayColor]);
         GFilledRectangle(x-xMargin/2,y-yMargin,sz.width+xMargin,sz.height+yMargin);
         GStrokeColor([NSColor darkGrayColor]);
+		
+		if(state == STATE_LOOK) return;
     }
     
     GText(x,y,str);
@@ -340,7 +342,7 @@ void drawGroundNode(int index)
             GFilledOval(xp,yp,sz,sz);
         }
         else {
-            GFillColor([NSColor greenColor]);
+			GFillColor(state == STATE_LOOK ? seeThroughGrayColor : [NSColor greenColor]);
             GFilledOval(xp,yp,sz,sz);
             
             setHighlightStrokeColor(highlightStatus);
@@ -651,7 +653,7 @@ void drawResistor(int index)
     
     setHighlightFillColor(resColor,highlight);
     setHighlightStrokeColor(index);
-    
+	
     if(ref.orient == HORZ || ref.orient == HORZ2) {
         int xs = gHop * ref.size;
         int ys = 0;
@@ -660,10 +662,13 @@ void drawResistor(int index)
             if(viewStyle != VIEWSTYLE_TRACE) {
                 setHighlightFillColor(resColor2,highlight);
                 GFilledRectangle(xp-gOffset+1,yp-gOffset+1,xs+gOffset*2-2,ys+gOffset*2-2);
+				if(state == STATE_LOOK) return;
             }
             drawPin(ref,0,0,highlight);
             drawPin(ref,ref.size,0,highlight);
         }
+		
+		if(state == STATE_LOOK) return;
         drawLabel(xp + xs/2,yp,ref.name,highlight);
         
     } else { // vertical
@@ -674,10 +679,12 @@ void drawResistor(int index)
             if(viewStyle != VIEWSTYLE_TRACE) {
                 setHighlightFillColor(resColor2,highlight);
                 GFilledRectangle(xp-gOffset+1,yp-gOffset+1,xs+gOffset*2-2,ys+gOffset*2);
+				if(state == STATE_LOOK) return;
             }
             drawPin(ref,0,0,highlight);
             drawPin(ref,0,ref.size,highlight);
         }
+		if(state == STATE_LOOK) return;
         drawLabel(xp,yp+ys/2,ref.name,highlight);
     }
 }
@@ -703,10 +710,12 @@ void drawCapacitor(int index)
                 GFilledOval(xp-gOffset,yp-gOffset,xs+gOffset,ys+gOffset);
             }
             GStroke();
+			if(state == STATE_LOOK) return;
             GFillColor([NSColor blackColor]);
             drawPin(ref,0,0,highlight);
             drawPin(ref,ref.size,0,highlight);
         }
+		if(state == STATE_LOOK) return;
         drawLabel(xp + (xs-gHop/2)/2,yp,ref.name,highlight);
         
     } else { // vertical
@@ -718,10 +727,12 @@ void drawCapacitor(int index)
                 GFilledOval(xp-gOffset,yp-gOffset,xs+gOffset,ys+gOffset);
             }
             GStroke();
+			if(state == STATE_LOOK) return;
             GFillColor([NSColor blackColor]);
             drawPin(ref,0,0,highlight);
             drawPin(ref,0,ref.size,highlight);
         }
+		if(state == STATE_LOOK) return;
         drawLabel(xp,yp+(ys-gHop/2)/2,ref.name,highlight);
     }
 }
@@ -747,6 +758,7 @@ void drawECapacitor(int index)
                 GFilledOval(xp-gOffset,yp-gOffset,xs+gOffset,ys+gOffset);
             }
             GStroke();
+			if(state == STATE_LOOK) return;
             GFillColor([NSColor blackColor]);
             drawPin(ref,0,0,highlight,ref.orient == HORZ);
             drawPin(ref,ref.size,0,highlight,ref.orient != HORZ);
@@ -757,6 +769,7 @@ void drawECapacitor(int index)
                 drawPlus(ref,xx,0,highlight);
             }
         }
+		if(state == STATE_LOOK) return;
         drawLabel(xp + (xs-gHop/2)/2,yp,ref.name,highlight);
         
     } else { // vertical
@@ -768,6 +781,7 @@ void drawECapacitor(int index)
                 GFilledOval(xp-gOffset,yp-gOffset,xs+gOffset,ys+gOffset);
             }
             GStroke();
+			if(state == STATE_LOOK) return;
             GFillColor([NSColor blackColor]);
             drawPin(ref,0,0,highlight,ref.orient == VERT);
             drawPin(ref,0,ref.size,highlight,ref.orient != VERT);
@@ -779,6 +793,7 @@ void drawECapacitor(int index)
             }
             
         }
+		if(state == STATE_LOOK) return;
         drawLabel(xp,yp+(ys-gHop/2)/2,ref.name,highlight);
     }
 }
@@ -957,6 +972,7 @@ void drawTransistor(int index)
     
     // name -----------------------------
     if(viewStyle != VIEWSTYLE_DESIGN) return;
+	if(state == STATE_LOOK) return;
     
     GStrokeColor((highlight || !highlightCount) ? [NSColor blackColor] : [NSColor darkGrayColor]);
     
@@ -1201,7 +1217,9 @@ void drawChip(int index)
             GStroke();
         }
     }
-    
+	
+	if(state == STATE_LOOK) return;
+	
     int xx = ref.pt.x + sX;
     
     switch(ref.orient) {
