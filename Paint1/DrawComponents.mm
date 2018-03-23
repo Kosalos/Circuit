@@ -678,7 +678,7 @@ void drawResistor(int index)
         if(!justLabels) {
             if(viewStyle != VIEWSTYLE_TRACE) {
                 setHighlightFillColor(resColor2,highlight);
-                GFilledRectangle(xp-gOffset+1,yp-gOffset+1,xs+gOffset*2-2,ys+gOffset*2);
+                GFilledRectangle(xp-gOffset+1,yp-gOffset+1,xs+gOffset*2-2,ys+gOffset*2-25);
 				if(state == STATE_LOOK) return;
             }
             drawPin(ref,0,0,highlight);

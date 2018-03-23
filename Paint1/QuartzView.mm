@@ -834,8 +834,8 @@ bool BomData::nameOrder(int i) {
     const char *n1 = entry[i].name;
     const char *n2 = entry[i+1].name;
 	
-	if(entry[i].kind == KIND_RES) return resistorValue(n1) < resistorValue(n2);
-	if(entry[i].kind == KIND_CAP) return capValue(n1) < capValue(n2);
+	if(entry[i].kind == KIND_RES) return resistorValue(n1) <= resistorValue(n2);
+	if(entry[i].kind == KIND_CAP) return capValue(n1) <= capValue(n2);
 
     return strcmp(n1,n2) <= 0;
 }
