@@ -2021,10 +2021,15 @@ bool ctrlKeyDown = false;
             addCircuitEntry(c);
             break;
         case '7' :
-            c.kind = KIND_C8;
+			c.kind = KIND_C8;
             c.orient = VERT;
             addCircuitEntry(c);
             break;
+		case '&' :		// Shift + 7
+			c.kind = KIND_C18;
+			c.orient = VERT;
+			addCircuitEntry(c);
+			break;
         case '8' :
             c.kind = KIND_C14;
             c.orient = VERT;

@@ -24,7 +24,7 @@ NSString* htmlString =
                 "<tr><td><FONT COLOR=green>4</td><td><FONT COLOR=lightblue>Ground Point. 'W' sets Gnd to Waypoint</td></tr>"
                 "<tr><td><FONT COLOR=green>5</td><td><FONT COLOR=lightblue>Waypoint. 'G' sets waypoint to Gnd</td></tr>"
                 "<tr><td><FONT COLOR=green>6</td><td><FONT COLOR=lightblue>Transistor</td></tr>"
-                "<tr><td><FONT COLOR=green>7</td><td><FONT COLOR=lightblue> 8 pin Chip</td></tr>"
+                "<tr><td><FONT COLOR=green>7</td><td><FONT COLOR=lightblue> 8 pin Chip  ( 'Shift-7' for 18 pin Chip )</td></tr>"
                 "<tr><td><FONT COLOR=green>8</td><td><FONT COLOR=lightblue>14 pin Chip</td></tr>"
                 "<tr><td><FONT COLOR=green>9</td><td><FONT COLOR=lightblue>16 pin Chip  ( 'Shift-9' for 40 pin Chip )</td></tr>"
                 "<tr><td><FONT COLOR=green>0</td><td><FONT COLOR=lightblue>Power connector</td></tr>"

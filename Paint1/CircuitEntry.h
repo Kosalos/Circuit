@@ -23,6 +23,7 @@ enum {
     KIND_TRIMMER,
     KIND_LEGEND,
     KIND_C40,
+	KIND_C18,
     KIND_COUNT,
     
     HORZ = 0,

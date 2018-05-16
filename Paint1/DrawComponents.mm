@@ -1162,7 +1162,10 @@ void drawChip(int index)
     }
     else
         height = chipHeight[ref.kind];
-    
+	
+	if(ref.kind == KIND_C18)
+		height = 9-1;
+	
     int xs = gHop * chipWidth;
     int ys = gHop * height;
     
@@ -1353,6 +1356,7 @@ void drawCircuit()
             case KIND_C8  :
             case KIND_C14 :
             case KIND_C16 :
+			case KIND_C18 :
             case KIND_C40 :
                 drawChip(i);
                 break;
