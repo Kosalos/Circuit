@@ -729,6 +729,7 @@ void partsSummary()
         summaryColor[KIND_C8] = tranColor2;
         summaryColor[KIND_C14] = tranColor2;
         summaryColor[KIND_C16] = tranColor2;
+		summaryColor[KIND_C18] = tranColor2;
         summaryColor[KIND_C40] = tranColor2;
     }
     
