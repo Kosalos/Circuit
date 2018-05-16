@@ -637,6 +637,7 @@ void PartSummaryRowData::addComponent(int index)
     if(c.kind == KIND_C8) return;
     if(c.kind == KIND_C14) return;
     if(c.kind == KIND_C16) return;
+	if(c.kind == KIND_C18) return;
     if(c.kind == KIND_C40) return;
     if(c.kind == KIND_WAYPOINT) return;
     if(c.kind == KIND_LEGEND) return;
@@ -793,6 +794,7 @@ void BomData::addComponent(int index)
         if(c.kind == KIND_C8) return;
         if(c.kind == KIND_C14) return;
         if(c.kind == KIND_C16) return;
+		if(c.kind == KIND_C18) return;
         if(c.kind == KIND_C40) return;
         if(c.kind == KIND_NODE) return;
     }

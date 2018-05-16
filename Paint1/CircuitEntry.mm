@@ -295,7 +295,10 @@ NSPoint CircuitEntry::chipNodePosition(int pin)
     }
     else
         height = chipHeight[kind];
-    
+
+	if(kind == KIND_C18)
+		height = 8;
+	
     if(pin < 0 || pin >= height*2+2) {
         pnt.x = FAR_AWAY;
         return pnt;
@@ -367,6 +370,7 @@ NSPoint CircuitEntry::nodePosition(int pin)
         case KIND_C8 :
         case KIND_C14 :
         case KIND_C16:
+		case KIND_C18:
         case KIND_C40 :
             return chipNodePosition(pin);
         case KIND_NODE :
@@ -416,6 +420,8 @@ int CircuitEntry::numberPins()
             return 14;
         case KIND_C16:
             return 16;
+		case KIND_C18:
+			return 18;
         case KIND_C40 :
             return 40;
         default :
@@ -450,6 +456,7 @@ float CircuitEntry::distanceToPin(NSPoint p1,int pin)
         case KIND_C8 :
         case KIND_C14 :
         case KIND_C16:
+		case KIND_C18:
         case KIND_C40 :
             pnt = chipNodePosition(pin);
             break;
