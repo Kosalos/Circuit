@@ -453,7 +453,7 @@ int boardXS = 38,boardYS = 45; // small board + 1" wider + 0.5" taller
 
 int boardSize = 0;
 IPoint bsz[] = {
-    28,40,  // small board
+    30,40,  // small board	3x4"
     38,45,  // small board + 1" wider + 0.5" taller
     38,59  // 1/4 OF 20x30 cm board
 };
