@@ -904,13 +904,14 @@ void drawTransistor(int index)
     float gs = gHop / 2;
     float gs2= gHop * 1.5;
     
-    setHighlightFillColor(tranColor,highlight);
     setHighlightStrokeColor(index);
     
     if(!justLabels) {
         GClearPath();
         
-        switch(ref.orient) {
+		setHighlightFillColorTran(tranColor2,highlight,ref.name);
+
+		switch(ref.orient) {
             case HORZ : // flat up
                 if(viewStyle != VIEWSTYLE_TRACE) {
                     GMoveTo(xp-gs,yp);
@@ -918,9 +919,7 @@ void drawTransistor(int index)
                     GLineTo(xp+xs+gs,yp-gs);
                     GLineTo(xp+xs+gs,yp);
                     GAddArc(xp+xs/2,yp,gs2,0,180);
-                    setHighlightFillColor(tranColor2,highlight);
                     GFill();
-                    setHighlightFillColor(tranColor2,highlight);
                     GStroke();
                 }
                 for(int i=0;i<3;++i)
@@ -933,7 +932,6 @@ void drawTransistor(int index)
                     GLineTo(xp-gs,yp+gs);
                     GLineTo(xp-gs,yp);
                     GAddArc(xp+xs/2,yp,gs2,180,360);
-                    setHighlightFillColor(tranColor2,highlight);
                     GFill();
                     GStroke();
                 }
@@ -946,7 +944,6 @@ void drawTransistor(int index)
                     GLineTo(xp+gs,yp-gs);
                     GLineTo(xp+gs,yp+ys+gs);
                     GAddArc(xp,yp+ys/2,gs2,90,270);
-                    setHighlightFillColor(tranColor2,highlight);
                     GFill();
                     GStroke();
                 }
@@ -960,7 +957,6 @@ void drawTransistor(int index)
                     GLineTo(xp-gs,yp-gs);
                     GLineTo(xp,yp-gs);
                     GAddArc(xp,yp+ys/2,gs2,270,90);
-                    setHighlightFillColor(tranColor2,highlight);
                     GFill();
                     GStroke();
                 }
@@ -980,10 +976,13 @@ void drawTransistor(int index)
     // example:  "BC547;CBE"  will labels the pins 'C','B' and 'E' for collector, base, emmiter
     
     char name[32];
+	char trimmedName[32];
     strcpy(name,ref.name);
+	strcpy(trimmedName,name);
     char n1='a',n2='a',n3='a',*semi = strchr(name,';');
     if(semi != NULL) {
-        *semi = 0;
+        *semi = 0;		// trimed name
+		strcpy(trimmedName,name);
         n1 = semi[1];
         n2 = semi[2];
         n3 = semi[3];
@@ -991,7 +990,6 @@ void drawTransistor(int index)
     
     switch(ref.orient) {
         case HORZ : // flat up
-            drawLabel(xp + gHop*3/2-10*gZoom,yp-10*gZoom,name,highlight);
             if(semi != NULL) {
                 int x1 = xp-3*gZoom;
                 int x2 = xp+18*gZoom;
@@ -1002,9 +1000,9 @@ void drawTransistor(int index)
                 name[0] = n2;   GText(x2,y,name);
                 name[0] = n1;   GText(x3,y,name);
             }
+			drawLabel(xp + gHop*3/2-10*gZoom,yp-10*gZoom,trimmedName,highlight);
             break;
         case HORZ2 : // flat down
-            drawLabel(xp + gHop*3/2-10*gZoom,yp-20*gZoom,name,highlight);
             if(semi != NULL) {
                 int x1 = xp-3*gZoom;
                 int x2 = xp+18*gZoom;
@@ -1015,9 +1013,9 @@ void drawTransistor(int index)
                 name[0] = n2;   GText(x2,y,name);
                 name[0] = n3;   GText(x3,y,name);
             }
+			drawLabel(xp + gHop*3/2-10*gZoom,yp-20*gZoom,trimmedName,highlight);
             break;
         case VERT : // flat right
-            drawLabel(xp-10*gZoom,yp+11*gZoom,name,highlight);
             if(semi != NULL) {
                 int x = xp-13*gZoom;
                 int y1 = yp-05*gZoom;
@@ -1028,9 +1026,9 @@ void drawTransistor(int index)
                 name[0] = n2;   GText(x,y2,name);
                 name[0] = n1;   GText(x,y3,name);
             }
+			drawLabel(xp-10*gZoom,yp+11*gZoom,trimmedName,highlight);
             break;
         case VERT2 : // flat left
-            drawLabel(xp+10*gZoom,yp+11*gZoom,name,highlight);
             if(semi != NULL) {
                 int x = xp+5*gZoom;
                 int y1 = yp-05*gZoom;
@@ -1041,6 +1039,7 @@ void drawTransistor(int index)
                 name[0] = n2;   GText(x,y2,name);
                 name[0] = n1;   GText(x,y1,name);
             }
+			drawLabel(xp+10*gZoom,yp+11*gZoom,trimmedName,highlight);
             break;
     }
 }

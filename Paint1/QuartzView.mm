@@ -28,7 +28,7 @@ NSPoint pnt,basePoint;
 
 ConnectionData globalConnection;
 NSColor *resColor,*resColor2,*capColor,*capColor2,*chipColor,*chipColor2,*tranColor,*tranColor2,*seeThroughGrayColor;
-NSColor *ecapColor,*diodeColor;
+NSColor *ecapColor,*diodeColor,*redTint,*blueTint;
 
 const NSString *stateLegends[] = {
     @"<M> Move",
@@ -319,6 +319,14 @@ void setHighlightFillColor(NSColor *color,bool highlightStatus)
     GFillColor((!highlightCount || highlightStatus) ? color : seeThroughGrayColor);
 }
 
+void setHighlightFillColorTran(NSColor *color,bool highlightStatus,const char *name)
+{
+	if(strstr(name,"547") != NULL) color = redTint;
+	if(strstr(name,"557") != NULL) color = blueTint;
+
+	GFillColor((!highlightCount || highlightStatus) ? color : seeThroughGrayColor);
+}
+
 // ==============================================================
 
 void drawVia(int index)
@@ -543,6 +551,9 @@ void drawGrid()
         diodeColor= [NSColor colorWithRed:1     green:1     blue:0   alpha:0.5];
 		seeThroughGrayColor = [NSColor colorWithRed:0 green:0 blue:0 alpha:0.1];
 
+		redTint   = [NSColor colorWithRed:1     green:0.6   blue:0.5 alpha:0.3];
+		blueTint  = [NSColor colorWithRed:0.5   green:0.6   blue:1   alpha:0.3];
+		
         [self reset];
         q.openDocument();
     }
