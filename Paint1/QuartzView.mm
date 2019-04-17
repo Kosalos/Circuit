@@ -27,7 +27,7 @@ bool alsoShowVias = false;
 NSPoint pnt,basePoint;
 
 ConnectionData globalConnection;
-NSColor *resColor,*resColor2,*capColor,*capColor2,*chipColor,*chipColor2,*tranColor,*tranColor2,*seeThroughGrayColor;
+NSColor *resColor,*resColor2,*capColor,*capColor2,*eCapColor,*chipColor,*chipColor2,*tranColor,*tranColor2,*seeThroughGrayColor;
 NSColor *ecapColor,*diodeColor,*redTint,*blueTint;
 
 const NSString *stateLegends[] = {
@@ -543,6 +543,7 @@ void drawGrid()
         resColor2 = [NSColor colorWithRed:0.7   green:0.5   blue:0.5 alpha:0.3];
         capColor  = [NSColor colorWithRed:0.5   green:0.7   blue:0.5 alpha:1];
         capColor2 = [NSColor colorWithRed:0.5   green:0.7   blue:0.5 alpha:0.3];
+		eCapColor = [NSColor colorWithRed:0.8   green:0.4   blue:0.0 alpha:0.3];
         chipColor = [NSColor colorWithRed:0.5   green:0.5   blue:0.7 alpha:1];
         chipColor2= [NSColor colorWithRed:0.5   green:0.5   blue:0.7 alpha:0.3];
         tranColor = [NSColor colorWithRed:0.8   green:0.8   blue:0.6 alpha:1];

@@ -24,7 +24,7 @@ extern bool isZoom;
 extern bool designStyle;
 extern bool semiColonClip;
 
-extern NSColor *resColor,*resColor2,*capColor,*capColor2,*chipColor,*chipColor2,*tranColor,*tranColor2,*seeThroughGrayColor;
+extern NSColor *resColor,*resColor2,*capColor,*capColor2,*eCapColor,*chipColor,*chipColor2,*tranColor,*tranColor2,*seeThroughGrayColor;
 extern NSColor *ecapColor,*diodeColor,*redTint,*blueTint;
 
 void newState(int s);

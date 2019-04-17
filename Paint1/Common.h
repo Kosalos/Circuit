@@ -21,7 +21,7 @@ enum {
     STATE_CHECK,
     STATE_VIA,
     
-    GHOP = 20,  // grid cell size
+    GHOP = 16,  // grid cell size
 
     NODE_RADIUS = 7,
     NODE_SIZE_PCB = 15,

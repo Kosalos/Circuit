@@ -754,7 +754,7 @@ void drawECapacitor(int index)
         int ys = shortAxis;
         if(!justLabels) {
             if(viewStyle != VIEWSTYLE_TRACE) {
-                setHighlightFillColor(capColor2,highlight);
+                setHighlightFillColor(eCapColor,highlight);
                 GFilledOval(xp-gOffset,yp-gOffset,xs+gOffset,ys+gOffset);
             }
             GStroke();
@@ -777,7 +777,7 @@ void drawECapacitor(int index)
         int ys = longAxis;
         if(!justLabels) {
             if(viewStyle != VIEWSTYLE_TRACE) {
-                setHighlightFillColor(capColor2,highlight);
+                setHighlightFillColor(eCapColor,highlight);
                 GFilledOval(xp-gOffset,yp-gOffset,xs+gOffset,ys+gOffset);
             }
             GStroke();
