@@ -1240,7 +1240,7 @@ void drawChip(int index)
                             GSmallText(x,y,str);
                             
                             sprintf(str,"%d",(height+1) * 2 - i);
-                            GSmallText(x + (chipWidth-1)*gHop,y,str);
+                            GSmallText(x + (chipWidth-1)*gHop - 10,y,str);
                         }
                     }
                 }
@@ -1275,7 +1275,7 @@ void drawChip(int index)
                     
                     if(viewStyle == VIEWSTYLE_DESIGN) {
                         int x = scrollX+(xx+i)*gHop-6*gZoom;
-                        int y = scrollY+(ref.pt.y + chipWidth)*gHop-18*gZoom;
+                        int y = scrollY+(ref.pt.y + chipWidth)*gHop-13*gZoom;
                         
                         //if(ref.kind == KIND_C40) y -= gHop*2;
                         
@@ -1297,7 +1297,7 @@ void drawChip(int index)
                     
                     if(viewStyle == VIEWSTYLE_DESIGN) {
                         int x = scrollX+(xx+i)*gHop-6*gZoom;
-                        int y = scrollY+(ref.pt.y + chipWidth)*gHop-18*gZoom;
+                        int y = scrollY+(ref.pt.y + chipWidth)*gHop-13*gZoom;
                         
                         sprintf(str,"%d",-(height- (height+1) * 2 - i));
                         GSmallText(x,y,str);
