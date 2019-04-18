@@ -24,7 +24,7 @@ enum {
     GHOP = 16,  // grid cell size
 
     NODE_RADIUS = 7,
-    NODE_SIZE_PCB = 15,
+    NODE_SIZE_PCB = 13,  //15,
     NODE_HOLE_SIZE = 7,
     CONNECTION_WIDTH_PCB = 9, //12,
     CONNECTION_WIDTH_DESIGN = 2,
